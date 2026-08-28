@@ -1,4 +1,4 @@
-# Awesome Single-LLM vs Multi-Agent Debate for Scientific Hypothesis Generation
+# Awesome Scientific-Agent-Debate
 
 A curated collection of research papers, datasets, tools, implementations, and learning resources related to **Single-LLM and Multi-Agent Debate (MAD) systems for scientific hypothesis generation**.
 
@@ -19,7 +19,6 @@ This repository connects an AI-assisted research paper and citation-integrity au
 - [Tools and Libraries](#tools-and-libraries)
 - [GitHub Implementations](#github-implementations)
 - [Tutorials and Learning Resources](#tutorials-and-learning-resources)
-- [Research Gaps](#research-gaps)
 - [License](#license)
 
 ## Overview
@@ -100,17 +99,6 @@ See [implementations/github-repositories.md](implementations/github-repositories
 ## Tutorials and Learning Resources
 
 See [tools/tools.md](tools/tools.md#tutorials-and-learning-resources) for learning resources and official documentation.
-
-## Research Gaps
-
-The accompanying research paper highlights several important gaps:
-
-1. Matched single-LLM versus multi-agent ablations with equal compute budgets.
-2. Joint evaluation of novelty, feasibility, testability, and diversity.
-3. Debate protocols designed for divergent ideation rather than convergence on one answer.
-4. Cost-normalized comparisons using tokens, forward passes, or wall-clock time.
-5. Evaluation of correlated errors and agent heterogeneity.
-6. Longitudinal tracking from generated hypotheses to real experimental outcomes.
 
 ## License
 
