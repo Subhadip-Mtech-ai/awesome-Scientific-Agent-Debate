@@ -39,7 +39,3 @@
 **What it implements:** Implementation of a multi-LLM debate system with configurable models and adaptive stability detection.
 
 **Why relevant:** Demonstrates practical orchestration of multiple LLM instances and configurable debate rounds.
-
-## Selection note
-
-The assignment recommends evaluating existing GitHub repositories using documentation quality, source-code clarity, maintenance/activity, examples, reproducibility, licensing, and connection to recognized research. These criteria should be checked again immediately before submission.
