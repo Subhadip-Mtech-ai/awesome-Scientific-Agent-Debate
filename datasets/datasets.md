@@ -10,8 +10,6 @@
 
 **Link:** https://huggingface.co/datasets/HypoArena/HypoData
 
-**License:** CC BY-NC 4.0 according to the dataset card. Check the current dataset terms before reuse.
-
 ## 2. Think Like a Researcher Dataset
 
 **Source:** GitHub repository `mskaa3/think-like-a-researcher`
@@ -31,5 +29,3 @@
 **Application:** Useful for evaluating factuality, evidence retrieval, citation support, and scientific claim verification around AI-generated research outputs.
 
 **Link:** https://github.com/allenai/scifact
-
-**License:** Check the repository license and dataset terms before reuse. The project documentation distinguishes claim annotations, abstracts, and code licensing.
