@@ -1,7 +1,5 @@
 # Curated Research Papers
 
-This list is intended to contain **verified scholarly resources** relevant to the topic. Do not upload copyrighted paper PDFs unless redistribution is clearly permitted. Prefer arXiv, DOI, publisher, or official project pages.
-
 ## Foundational Papers
 
 ### 1. AI Safety via Debate
@@ -160,9 +158,3 @@ Presents Robin, a multi-agent system that combines literature-search and data-an
 Introduces an open-ended benchmark framework grounded in real scientific studies and code repositories for evaluating scientific agents.
 
 ---
-
-## Curation Note
-
-The earlier AI-generated paper contained 24 references. The separate citation audit found that two sampled references had metadata problems, including a misattributed author name and an incomplete citation. Those problematic citations should not be copied blindly into this repository.
-
-The list above intentionally uses a curated set of references with stable scholarly links. Before final submission, re-open each linked source and check the title, authors, year, venue, and identifier one final time.
