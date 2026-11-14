@@ -1,0 +1,26 @@
+% tab_main_results.tex — Table III: Main Results
+\begin{table}[t]
+\caption{Main Experimental Results (50 Prompts, 95\% CI)}
+\label{tab:main}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+\textbf{Cond.} & \textbf{Q} $\uparrow$ & \textbf{N} $\uparrow$ & \textbf{D} $\uparrow$ & \textbf{G} $\uparrow$ & \textbf{Tok.} \\
+\midrule
+A (SL)  & \N{QualA} & \N{NovA}  & \N{DivA}  & \N{GrdA}  & \N{TokA}  \\
+        & {\tiny[\N{QualAlo}--\N{QualAhi}]} & & & & \\
+B (SC)  & \N{QualB} & \N{NovB}  & \N{DivB}  & \N{GrdB}  & \N{TokB}  \\
+        & {\tiny[\N{QualBlo}--\N{QualBhi}]} & & & & \\
+C (MAD) & \N{QualC} & \N{NovC}  & \N{DivC}  & \N{GrdC}  & \N{TokC}  \\
+        & {\tiny[\N{QualClo}--\N{QualChi}]} & & & & \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Statistical tests (Wilcoxon signed-rank, Bonferroni-corrected):}} \\
+\multicolumn{6}{@{}l}{A vs.\ B: $p = \N{pAB}$; A vs.\ C: $p = \N{pAC}$; B vs.\ C: $p = \N{pBC}$} \\
+\multicolumn{6}{@{}l}{Cohen's $d$: A--B = \N{dAB}, A--C = \N{dAC}} \\
+\bottomrule
+\end{tabular}
+\vspace{1pt}
+{\scriptsize Q = quality, N = novelty, D = diversity, G = groundedness, Tok. = mean tokens.}
+\end{table}

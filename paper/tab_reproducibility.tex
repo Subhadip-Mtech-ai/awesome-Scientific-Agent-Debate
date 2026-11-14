@@ -1,0 +1,26 @@
+% tab_reproducibility.tex — Table VI: Reproducibility Checklist
+\begin{table}[t]
+\caption{Reproducibility Checklist}
+\label{tab:repro}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Location} \\
+\midrule
+Random seeds fixed (seed=42)       & \checkmark & \texttt{configs/experiment.yaml} \\
+Frozen config committed            & \checkmark & \texttt{configs/experiment.yaml} \\
+Hypotheses \& freeze date logged   & \checkmark & \texttt{docs/hypotheses\_and\_freeze.md} \\
+Pre-registration (G1) archived     & \checkmark & \texttt{research\_brief\_G1.md} \\
+Baseline validation (G2) done      & \checkmark & \texttt{baseline\_validation.md} \\
+Decision log (G3) filled           & \checkmark & \texttt{research\_decisions.md} \\
+AI assistance log (G4) complete    & \checkmark & \texttt{ai\_assistance\_log.md} \\
+SHA-256 checksums for results      & \checkmark & \texttt{results/logs/results\_main.sha256} \\
+Unit tests (12 cases) pass         & \checkmark & \texttt{tests/test\_pipeline.py} \\
+Smoke run log committed            & \checkmark & \texttt{results/logs/smoke\_run\_seed999.log} \\
+Env check log committed            & \checkmark & \texttt{results/logs/env\_check.log} \\
+Pre/post-fix comparison archived   & \checkmark & \texttt{results/pre\_post\_fix\_comparison.csv} \\
+\bottomrule
+\end{tabular}
+\end{table}

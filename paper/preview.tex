@@ -1,0 +1,72 @@
+% preview.tex — Stand-alone preview version (no IEEEtran required)
+% Use this if pdflatex is available locally but IEEEtran.cls is not installed.
+% For the final submission-quality PDF, compile main.tex in Overleaf.
+%
+% Compile: pdflatex preview.tex && bibtex preview && pdflatex preview.tex && pdflatex preview.tex
+
+\documentclass[twocolumn,10pt]{article}
+
+\usepackage[letterpaper,
+            top=1in, bottom=1in,
+            left=0.75in, right=0.75in,
+            columnsep=0.5in]{geometry}
+
+\usepackage{times}           % Times New Roman equivalent
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{abstract}
+
+%% ---- Mimic IEEE section style --------------------------------
+\titleformat{\section}{\normalfont\bfseries\scshape\centering}{}{0em}{}
+\titlespacing{\section}{0pt}{6pt}{3pt}
+\titleformat{\subsection}{\normalfont\itshape}{}{0em}{}
+\titlespacing{\subsection}{0pt}{4pt}{2pt}
+
+%% ---- Figure path ---------------------------------------------
+\graphicspath{{figures/}}
+
+%% ---- Numerical macros ----------------------------------------
+\input{numbers}
+
+%% ==============================================================
+\begin{document}
+
+\twocolumn[{%
+  \centering
+  {\Large\bfseries Does Debate Improve Scientific Hypothesis Quality?\\[4pt]
+    A Comparative Study of Single-LLM, Self-Consistency,\\
+    and Multi-Agent Debate on HypoBench}\\[8pt]
+  {\normalsize Subhadip Bag}\\
+  {\small Indian Institute of Information Technology Allahabad, Prayagraj, India}\\
+  {\small \texttt{mra2026005@iiita.ac.in}}\\[8pt]
+  \hrule
+  \vspace{4pt}
+  \begin{minipage}{0.9\textwidth}
+    \small\textbf{Abstract---}Scientific hypothesis generation is a high-value
+    but under-studied application of large language models (LLMs).  Three candidate
+    paradigms exist: Single-LLM (SL), Self-Consistency (SC), and Multi-Agent
+    Debate (MAD).  We present the first controlled, pre-registered comparison of
+    all three on HypoBench (50 prompts, five domains).  MAD achieves a mean
+    quality score of \N{QualC} (95\%~CI: \N{QualClo}--\N{QualChi}),
+    significantly outperforming SL at \N{QualA} ($p=\N{pAC}$, $d=\N{dAC}$).
+    SC closes \N{SCgap}\% of the quality gap.  Round-ablation shows Round~2
+    maximises quality-to-cost.  All artefacts are publicly released.
+  \end{minipage}\\[8pt]
+  \hrule
+  \vspace{10pt}
+}]
+
+\input{body}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
