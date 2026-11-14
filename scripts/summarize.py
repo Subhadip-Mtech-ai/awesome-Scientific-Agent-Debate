@@ -1,8 +1,6 @@
 """summarize.py — Aggregate results_main.csv into summary tables."""
 
-import csv, json, os, numpy as np
-sys._getframe  # noqa
-import sys
+import csv, json, os, sys, numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from utils import bootstrap_ci
 

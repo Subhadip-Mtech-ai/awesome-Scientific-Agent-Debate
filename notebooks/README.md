@@ -6,6 +6,7 @@ This directory contains Jupyter notebooks for the hypothesis ablation study.
 
 | Notebook | Purpose | Status |
 |----------|---------|--------|
+| `Scientific_Agent_Debate_Colab.ipynb` | **Full end-to-end Google Colab reproduction** notebook with all 5 figures and 5 tables pre-rendered | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Subhadip-Mtech-ai/awesome-Scientific-Agent-Debate/blob/main/notebooks/Scientific_Agent_Debate_Colab.ipynb) [REPRODUCED] |
 | `00_sanity_check.ipynb` | 10-prompt baseline sanity check (Gate G2) | [TESTED] — Condition A mean Q=3.08, groundedness=0.72 |
 
 ## How to run
