@@ -98,6 +98,7 @@ HypoBench \cite{Liu2025} is the first benchmark designed specifically to evaluat
 LLM-generated hypotheses in a controlled, multi-domain setting with structured
 rubrics.  Self-consistency \cite{Wang2022} is simpler than MAD but has not been
 compared with it on scientific generation tasks; we fill that gap.
+Table~\ref{tab:prior} summarizes prior multi-agent scientific hypothesis systems.
 
 \input{tab_prior_systems}
 
@@ -129,7 +130,7 @@ consecutive outputs exceeds 0.95).
 
 \textbf{Ablation (C1--C3).}  We re-run Condition~C limiting debate to exactly
 1, 2, or 3 rounds to measure the marginal quality and token cost per additional
-round.
+round.  Table~\ref{tab:conditions} summarizes the experimental conditions.
 
 \input{tab_conditions}
 
@@ -378,7 +379,8 @@ incurring API cost.  SHA-256 checksums for all result files are stored in
 
 This study used AI assistance at each of the four course gate phases.  Following
 the AI Tools for Research course guidelines \cite{Liu2025}, all AI interactions
-are logged verbatim in \texttt{ai\_assistance\_log.md}, grouped by gate.  Key
+are logged verbatim in \texttt{ai\_assistance\_log.md}, grouped by gate, and
+summarized in Table~\ref{tab:ailog}.  Key
 principles observed throughout:
 \begin{enumerate}
   \item All research hypotheses (H1--H3) were formulated by the human researcher
