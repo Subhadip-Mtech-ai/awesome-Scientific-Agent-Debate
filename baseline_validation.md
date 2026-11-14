@@ -1,57 +1,35 @@
-# Baseline Validation Record (Gate G2)
+baseline_validation.md (gate G2)
 
-**Author:** Subhadip Bag, mra2026005@iiita.ac.in  
-**Date of validation:** 2026-11-05  
-**Gate:** G2 — Baseline established and verified
+These are controlled pipeline variants representing different collaboration structures, not reproductions of published tools.
+Condition C (MAD) is NOT Du et al.'s full implementation; it is the minimal 2-agent + critic setup with no retrieval, no ranking. No claim is made about equivalence with any published system.
 
----
+## Checks performed (non-reported smoke seed 999; results in results/baseline_validation.json)
 
-## Sanity Check (10-Prompt Run)
+| Item | Result | Status |
+|------|--------|--------|
+| All 10 sanity-check outputs parseable (3 hypotheses each from Condition A) | 10/10 correct format | VERIFIED |
+| Generation deterministic (same seed → same hash) | true | VERIFIED |
+| Full pipeline reproducible (sha256 of results_main.csv identical across two complete runs) | hash matches both times | VERIFIED |
+| No prompt ID overlap between train/test groups in 5-fold CV | 0 overlapping groups, asserted at runtime and in tests | VERIFIED |
+| LLM judge learns nothing from shuffled labels (permutation control) | AUROC 0.509 (0.473–0.527, 5 shuffles) | VERIFIED |
+| Condition A baseline quality mean: 3.08 / 5.0 | 3.08 (CI: 2.91–3.26) | VERIFIED |
+| Groundedness mean for Condition A ≥ 0.5 | 0.714 | VERIFIED |
+| Token count logged per call | avg 487 tokens/prompt (Condition A) | VERIFIED |
+| Self-Consistency centroid selection deterministic | unit test passes | VERIFIED |
+| MAD sequence: agents revise after critique, not before | verified by reading qualitative outputs | VERIFIED |
 
-Before the full 50-prompt run, Condition A was validated on 10 prompts
-with manual inspection.
+## UNCERTAIN
 
-### Checklist
+- LLM-judge calibration: a single judge model at temperature=0.0 gives consistent scores but inherits model bias. Not corrected; reported as a limitation (paper Sec. IX).
+- SC centroid selection on only 5 calls may not fully represent the output distribution. Reported, not corrected.
+- Closed-world n=50: results may not generalise to full HypoBench or other domains.
 
-| Check | Expected | Observed | Status |
-|-------|----------|----------|--------|
-| All 10 outputs parseable (3 hypotheses each) | Yes | Yes | ✅ VERIFIED |
-| Groundedness mean | > 0.5 | 0.72 | ✅ VERIFIED |
-| Quality judge mean | 2.5–4.0 | 3.08 / 5 | ✅ VERIFIED |
-| Token count logged per call | Yes | Yes — avg 487 | ✅ VERIFIED |
-| Output format: numbered 1., 2., 3. | Yes | 10/10 | ✅ VERIFIED |
-| No repeated / duplicate hypotheses | Yes | Confirmed | ✅ VERIFIED |
+## CORRECTED (deviations after first smoke run)
 
-### Consistency Check (GPT-4o-mini Pilot)
+- Minor prompt-format inconsistency: the system prompt in conditions.py used a trailing space in the first run. Fixed after reading qualitative outputs; regression test added.
+- Effect of fix: largest change in any reported metric < 0.01. See `results/archive_v1_pre_run/`.
 
-A 10-prompt pilot run with GPT-4o-mini backbone confirmed that the
-rank ordering A < B < C holds regardless of backbone model.
+## Not done
 
-| Condition | Gemma-2 Q | GPT-4o-mini Q | Rank order |
-|-----------|----------|----------------|------------|
-| A (SL) | 3.08 | 3.42 | 1st |
-| B (SC) | 3.31 | 3.59 | 2nd |
-| C (MAD)| 3.47 | 3.71 | 3rd |
-
-Rank order is consistent: A < B < C on both backbones.
-
-### Conclusion
-
-Condition A baseline is valid and reproducible. Full 50-prompt run approved.
-
----
-
-## Full Run Verification
-
-After completing all 50 prompts:
-
-| Metric | A: SL | B: SC | C: MAD |
-|--------|-------|-------|--------|
-| Quality (mean) | 3.08 | 3.31 | 3.47 |
-| Quality 95% CI | (2.91–3.26) | (3.14–3.48) | (3.29–3.64) |
-| Novelty | 0.41 | 0.43 | 0.46 |
-| Diversity | 0.38 | 0.41 | 0.52 |
-| Groundedness | 71.4% | 73.6% | 76.8% |
-| Tokens (mean) | 487 | 2,435 | 4,122 |
-
-All results are traceable to `results/` JSON files. No manual editing of results.
+- No comparison to numbers from any published paper: protocols differ (we isolate debate; published systems bundle multiple components), so no discrepancy analysis is possible.
+- No human expert evaluation: future work (paper Sec. X).

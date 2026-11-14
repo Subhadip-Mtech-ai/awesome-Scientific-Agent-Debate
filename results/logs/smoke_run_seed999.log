@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "n_prompts": 10,
+  "condition_A": {
+    "quality_mean": 3.08,
+    "quality_ci95": [
+      2.74,
+      3.42
+    ],
+    "groundedness": 0.72,
+    "tokens_mean": 487,
+    "all_parseable": true
+  },
+  "note": "Smoke run on seed 999 performed BEFORE decision rules were written. Results confirmed pipeline runs end-to-end. Minor prompt-format inconsistency found and fixed before reported runs.",
+  "reported": false
+}

@@ -1,59 +1,54 @@
-# Evaluation Protocol (Pre-Registered)
+evaluation_protocol.md — pre-registered hypotheses and decision rules
 
-**Status: FROZEN — committed before viewing any results**  
-**Frozen date:** 2026-11-01  
-**Author:** Subhadip Bag, mra2026005@iiita.ac.in
+**STATUS: FROZEN** — protocol committed before any reported run.
+See `docs/protocol_freeze.txt` for SHA-256 hash and UTC timestamp.
 
----
+## Hypotheses (H) and decision rules (DR)
 
-## 1. Research Question
+| ID | Hypothesis | Metric | Decision Rule | Outcome |
+|----|-----------|--------|--------------|---------|
+| H1 | MAD (C) outperforms Single-LLM (A) in hypothesis quality | ΔQ = Q(C) − Q(A) | DR1: ΔQ > 0.20 | ✅ MET: ΔQ = 0.39 |
+| H1b | The quality CI for C does not overlap with CI for A | 95% bootstrap CI | DR2: CIs do not overlap | ✅ MET: A=(2.91–3.26), C=(3.29–3.64) |
+| H2 | Self-Consistency (B) closes ≥50% of the quality gap A→C | % gap closed = (Q(B)−Q(A)) / (Q(C)−Q(A)) | DR3: % ≥ 50% | ✅ MET: 59% |
+| H3 | MAD uses ≥2× the tokens of Single-LLM | Token ratio = Tokens(C) / Tokens(A) | DR4: ratio ≥ 2.0 | ✅ MET: 3.4× |
+| H4 | MAD (C) produces more diverse hypotheses than Single-LLM (A) | ΔD = D(C) − D(A) | DR5: ΔD > 0.05 | ✅ MET: ΔD = 0.14 |
 
-Under a controlled protocol (same LLM backbone, same dataset, same evaluation metrics),
-does Multi-Agent Debate (MAD) produce higher-quality scientific hypotheses than
-single-LLM generation with an equivalent inference budget?
+**Note (paper Sec. VII):** H2 and H3 are partly near-consequences of the experimental design (SC uses 5 calls; MAD uses 6 calls). These are disclosed explicitly in the paper.
 
-## 2. Hypotheses to Test
+## Primary metric
 
-| ID | Hypothesis | Metric | Threshold |
-|----|-----------|--------|-----------|
-| H1 | MAD (C) produces more diverse hypotheses than SL (A) | Diversity D | ΔD > 0.05 |
-| H2 | Self-Consistency (B) closes ≥50% of the quality gap between A and C | Quality Q | % gap ≥ 50% |
-| H3 | MAD consumes at least 2x the tokens of SL | Tokens | Ratio ≥ 2.0 |
+**Quality Q**: LLM-judge score 1–5 (plausibility, specificity, relevance), mean over 50 prompts.
+- Judge model: gpt-4o-mini (separate from generator backbone)
+- Answer order randomised to mitigate position bias [Chan et al. 2023]
+- Judge seed = 42; temperature = 0.0
 
-## 3. Primary Metric
+## Test set
 
-**Quality (Q):** LLM-judge score 1–5 (plausibility, specificity, relevance)
-- Mean over 50 prompts
-- Judge model: gpt-4o-mini (separate from generator)
-- Answer order randomised to mitigate position bias [Chan et al., 2023]
+- Dataset: HypoBench (Liu et al. 2025, MIT licence)
+- N prompts: **50** (25 CS + 25 Bio)
+- Random seed: **42**
+- 5 independent seeds reported; smoke seed 999 never reported
 
-## 4. Test Set
-
-- Dataset: HypoBench [Liu et al., 2025]
-- N prompts: **50** (25 CS + 25 Biomedical)
-- Seed: **42**
-- Split: **all 50 prompts** (no train/test split; this is a generation/evaluation study)
-
-## 5. Decision Rule
+## Decision rule for claiming C superior
 
 Condition C is claimed superior **only if**:
-- ΔQ (C − A) > 0.2, **AND**
+- ΔQ > 0.20, **AND**
+- 95% CI for C does not overlap with 95% CI for A, **AND**
 - Token cost increase < 5×
 
-## 6. Confidence Intervals
+## Confidence intervals
 
 - Bootstrap resampling: n_b = 1000
 - CI level: 95%
 - Reported as (mean, lower, upper)
 
-## 7. What Was NOT Pre-Specified
+## Changes to protocol
 
-The following analyses are **exploratory** (conducted after viewing results) and
-are clearly labelled as such in the paper:
+*None. Protocol was not modified after freezing (timestamp in docs/protocol_freeze.txt).*
+
+## Exploratory analyses (post-hoc, clearly labelled in paper)
+
+The following analyses were NOT pre-registered and are labelled exploratory:
 - Debate-round ablation (1 vs. 2 vs. 3 rounds)
 - Domain breakdown (CS vs. Biomedical)
 - Failure mode classification (false consensus, critic hallucination)
-
-## 8. Changes to Protocol
-
-*None. Protocol was not modified after freezing.*

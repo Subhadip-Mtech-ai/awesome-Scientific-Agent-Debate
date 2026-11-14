@@ -1,0 +1,10 @@
+metric,pre_fix,post_fix,delta,max_change
+A_quality,3.07,3.08,0.01,0.01
+B_quality,3.3,3.31,0.01,0.01
+C_quality,3.46,3.47,0.01,0.01
+A_diversity,0.37,0.38,0.01,0.01
+B_diversity,0.4,0.41,0.01,0.01
+C_diversity,0.51,0.52,0.01,0.01
+A_tokens,485,487,2,2
+B_tokens,2428,2435,7,7
+C_tokens,4109,4122,13,13

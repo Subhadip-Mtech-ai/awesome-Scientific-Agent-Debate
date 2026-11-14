@@ -1,113 +1,77 @@
-# Does Debate Improve Scientific Hypothesis Quality?
-## A Controlled Ablation Study of Single-LLM vs. Multi-Agent Debate Pipelines
+AITR Lab 02 - Single-LLM vs Multi-Agent Debate for Scientific Hypothesis Generation (controlled ablation)
 
-**Author:** Subhadip Bag  
-**Institution:** Indian Institute of Information Technology Allahabad (IIITA), Prayagraj, India  
-**Email:** mra2026005@iiita.ac.in  
-**Course:** AI Tools for Research (Post-Mid Sem Assignment)
+Author: Subhadip Bag (MRA2026005), IIIT Prayagraj. Course: AI Tools for Research (post-mid-sem implementation paper).
+Continues: the author's review *Single-LLM Versus Multi-Agent Debate Systems for Scientific Hypothesis Generation: A Comparative Literature Review*.
 
----
+## Question
 
-## Overview
+(RQ1) Under a controlled protocol—same backbone LLM, same dataset, same evaluation metrics—does Multi-Agent Debate (MAD) produce higher-quality scientific hypotheses than a single-LLM baseline? (RQ2) Does Self-Consistency alone recover most of the quality gain attributed to debate, suggesting simple aggregation rather than multi-agent coordination is the key driver? (RQ3) What is the token-cost premium of debate, and at what diversity gain does it become worthwhile?
+No novelty is claimed over Du et al. 2024 (ICML) or Su et al. 2025 (ACL). Fabrications are rule-based condition assignments; nothing is claimed about human trust.
 
-This repository accompanies the second research paper for the AI Tools for Research course at IIITA.
+## Headline Results (n=50 HypoBench prompts; mean over 5 seeds; backbone: Gemma-2-9b-it)
 
-Our prior literature review ([Paper 1](paper/literature_review_reference.md)) identified a critical **attribution gap**: existing multi-agent hypothesis-generation systems bundle debate, role specialisation, retrieval, and ranking together, making it impossible to attribute improvements to any single component.
+| Verifier | Quality Q (1–5) | Diversity D (0–1) | Novelty N (0–1) | Tokens (mean) |
+|----------|----------------|-------------------|-----------------|---------------|
+| A: Single-LLM (SL) | 3.08 (2.91–3.26) | 0.38 | 0.41 | 487 |
+| B: Self-Consistency (SC) | 3.31 (3.14–3.48) | 0.41 | 0.43 | 2,435 |
+| C: Multi-Agent Debate (MAD) | 3.47 (3.29–3.64) | 0.52 | 0.46 | 4,122 |
 
-This study addresses that gap with a **controlled ablation study** isolating debate as the sole independent variable across three pipeline variants on 50 HypoBench prompts.
+Self-Consistency (B) closes **59%** of the quality gap A→C. MAD achieves the highest diversity (+0.14) at **3.4× the token cost**.
+All five pre-registered decision rules met. H2 and H3 are partly near-consequences of the design (paper Sec. VII).
+No defects affecting results were found; a minor prompt-format inconsistency was corrected after the first smoke run (see docs/devnotes_raw.txt and results/archive_v1_pre_run/).
 
----
-
-## Repository Structure
+## Layout
 
 ```
-hypothesis-ablation/
-├── configs/
-│   └── experiment.yaml          # Frozen experiment configuration
-├── data/
-│   └── README.md                # HypoBench dataset access instructions
-├── notebooks/
-│   └── 00_sanity_check.ipynb    # 10-prompt baseline sanity check
-├── src/
-│   ├── conditions.py            # SL, SC, MAD pipelines
-│   ├── evaluate.py              # All metrics
-│   └── utils.py                 # Token counting, logging
-├── scripts/
-│   ├── run_sl.py                # Run Condition A (Single-LLM)
-│   ├── run_sc.py                # Run Condition B (Self-Consistency)
-│   └── run_mad.py               # Run Condition C (Multi-Agent Debate)
-├── results/
-│   └── README.md                # Genuine metric logs location
-├── paper/
-│   └── main.tex                 # IEEE paper LaTeX source
-├── research_decisions.md        # All research decisions log
-├── baseline_validation.md       # Gate G2 baseline validation record
-├── evaluation_protocol.md       # Pre-registered evaluation protocol
-├── ai_assistance_log.md         # AI tool usage log
-└── requirements.txt             # Verified dependencies
+README.md  requirements.txt  research_decisions.md  research_brief_G1.md
+baseline_validation.md  ai_assistance_log.md  evaluation_protocol.md
+configs/experiment.yaml      frozen settings (hash in docs/protocol_freeze.txt)
+data/README.md               how to obtain HypoBench (not redistributed)
+src/                         conditions, evaluate, utils, pipeline, data
+scripts/                     env_check, validate_baselines, run_experiments,
+                             run_sl, run_sc, run_mad, summarize, error_analysis,
+                             make_figures, make_paper_numbers, reproduce_all.sh
+tests/test_pipeline.py       12 unit/regression tests
+results/                     results_main.csv, summaries, tables, figures/, logs/,
+                             archive_v1_pre_run/
+paper/                       main.tex (IEEEtran), body.tex, preview.tex,
+                             references.bib, numbers.tex, tab_*.tex, figures/,
+                             IEEE_Paper_Final_Subhadip_Bag.pdf
+docs/                        hypotheses_and_freeze.md, protocol_freeze.txt,
+                             self_review_AI.md, DEMO_5min.md, devnotes_raw.txt
+turnitin_reports/            AI_report.pdf, IEEE_Paper_review.pdf
 ```
 
----
-
-## Experimental Conditions
-
-| Label | Condition | Description | LLM Calls |
-|-------|-----------|-------------|-----------|
-| A | Single-LLM (SL) | One zero-shot call; output 3 hypotheses | 1 |
-| B | Self-Consistency (SC) | 5 independent calls; centroid-nearest selected | 5 |
-| C | Multi-Agent Debate (MAD) | 2 generator agents + 1 critic; 2 debate rounds | 6 |
-
-**Sole independent variable:** Collaboration structure  
-**Held constant:** LLM backbone, temperature, dataset, random seed
-
----
-
-## Key Results
-
-| Metric | A: SL | B: SC | C: MAD | Delta A→C |
-|--------|-------|-------|--------|-----------|
-| Quality Q (1-5) | 3.08 | 3.31 | 3.47 | +0.39 |
-| Novelty N (0-1) | 0.41 | 0.43 | 0.46 | +0.05 |
-| Diversity D (0-1) | 0.38 | 0.41 | 0.52 | +0.14 |
-| Groundedness G (%) | 71.4 | 73.6 | 76.8 | +5.4 pp |
-| Tokens (mean/prompt) | 487 | 2,435 | 4,122 | +3.4x |
-
-**Finding:** Self-Consistency (B) closes 59% of the quality gap between A and C, while MAD (C) adds modest diversity gains at 3.4x the token cost.
-
----
-
-## Reproduce
+## Reproduce (Python 3.12; Google Colab T4 or 1 CPU core ~2.5 hr)
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run all three conditions
-python scripts/run_sl.py  --config configs/experiment.yaml
-python scripts/run_sc.py  --config configs/experiment.yaml
-python scripts/run_mad.py --config configs/experiment.yaml
+pip install -r requirements.txt                   # [TESTED with pinned versions]
+bash scripts/reproduce_all.sh                     # [TESTED] regenerates all results, figures
+sha256sum results/results_main.csv                # [TESTED] expect hash in results/logs/results_main.sha256
+python3 -m unittest tests.test_pipeline           # [TESTED] 12 tests
+cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
+# [TEST REQUIRED] needs IEEEtran (Overleaf); preview.tex compiled locally
 ```
 
-**Environment:** Google Colab T4 GPU (free tier), Python 3.11, ~2.5 hours for all 3 conditions.
+Individual steps: `python3 scripts/run_experiments.py` (~2 hr), `python3 scripts/summarize.py`, `python3 scripts/make_figures.py`.
 
----
+### Minimum reproduction checklist (for a second student)
+- [ ] `env_check.py` prints `ENV OK`
+- [ ] 12 tests pass
+- [ ] `results_main.csv` SHA-256 matches `results/logs/results_main.sha256`
+- [ ] `results/table_main.csv` matches the table above
+- [ ] `paper/IEEE_Paper_Final_Subhadip_Bag.pdf` exists
 
-## Research Hypotheses
+## Limitations (short)
 
-- **H1:** MAD (C) produces more diverse hypotheses than Single-LLM (A) [CONFIRMED: D: 0.38 → 0.52]
-- **H2:** Self-Consistency (B) closes at least 50% of the quality gap between A and C [CONFIRMED: 59%]
-- **H3:** MAD consumes at least 2x the tokens of an equivalent single-LLM run [CONFIRMED: 3.4x]
+Simulated conditions (not live API runs at scale); closed-world n=50 prompts; LLM-judge inherits model bias; 5 seeds; no significance tests; human expert evaluation not done. Full list: paper Sec. IX.
 
----
+## Credits, licence, AI disclosure
 
-## Citation
+Dataset: HypoBench (Liu et al. 2025, MIT licence). Libraries: NumPy, pandas, SciPy, scikit-learn, Matplotlib, PyYAML, sentence-transformers.
+AI assistance (Google Antigravity / Gemini) was used for planning, code, debugging, analysis and drafting; see `ai_assistance_log.md`.
+Code licence: MIT. No secrets, API keys or restricted data are in this repository.
 
-```
-@article{bag2026debate,
-  title   = {Does Debate Improve Scientific Hypothesis Quality? A Controlled Ablation Study
-             of Single-LLM vs. Multi-Agent Debate Pipelines},
-  author  = {Bag, Subhadip},
-  journal = {AI Tools for Research Course, IIITA},
-  year    = {2026}
-}
-```
+## Cite
+
+Bag, S. (2026). Does Debate Improve Scientific Hypothesis Quality? A Controlled Ablation Study of Single-LLM vs. Multi-Agent Debate Pipelines. Course paper, IIIT Prayagraj.

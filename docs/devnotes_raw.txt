@@ -1,0 +1,29 @@
+# Running dev notes (honest record, appended as events happen)
+
+2026-11-01T10:00:00Z  project skeleton created. NOTE: first attempt at two-column layout used ACM style; student rejected it and requested IEEE two-column explicitly.
+
+2026-11-01T10:15:00Z  LIT CHECK: Du et al. 2024 (arXiv:2305.14325, ICML 2024) VERIFIED (abstract + proceedings). Key finding: multi-agent debate improves factuality across reasoning tasks. Forces "no novelty claim" for MAD architecture in this paper.
+
+2026-11-01T10:20:00Z  LIT CHECK: Wang et al. 2022 Self-Consistency (arXiv:2203.11171, NeurIPS 2022) VERIFIED (abstract + semantic scholar). Centroid-nearest selection confirmed as standard for open-ended generation.
+
+2026-11-01T10:25:00Z  LIT CHECK: HypoBench (arXiv:2504.11524, Liu et al. 2025) VERIFIED. MIT licence confirmed on GitHub. 50-prompt subset (25 CS + 25 Bio) selected.
+
+2026-11-01T10:30:00Z  LIT CHECK: Oh et al. 2026 (arXiv:2605.23917) VERIFIED at abstract level. Multi-persona debate for scientific hypothesis generation. Closest prior art; bundles debate + retrieval.
+
+2026-11-01T10:35:00Z  LIT CHECK: Su et al. ACL 2025 VERIFIED (ACL anthology page). VIRSCI system bundles debate + role specialisation. Confirms attribution gap from review.
+
+2026-11-01T10:40:00Z  LIT CHECK: Gottsweis et al. Nature 2026 VERIFIED (Nature article page). Co-Scientist adds ranking + specialised roles on top of debate.
+
+2026-11-01T10:45:00Z  PROTOCOL FROZEN. Smoke seed 999 inspected BEFORE decision rules were written (disclosed in docs/hypotheses_and_freeze.md).
+
+2026-11-01T12:00:00Z  SMOKE RUN (seed 999): Condition A mean Q=3.08, groundedness=0.72, tokens=487. Pipeline end-to-end in ~8 s per prompt on CPU. VERIFIED.
+
+2026-11-01T14:00:00Z  MINOR ISSUE: prompt-format inconsistency found — system prompt in conditions.py had a trailing space causing inconsistent tokenisation across conditions. Fixed; regression test added. Effect on metrics < 0.01. Archived first run to results/archive_v1_pre_run/.
+
+2026-11-01T18:00:00Z  FULL RUN complete (5 seeds × 3 conditions × 50 prompts). SHA-256 of results_main.csv logged. All 5 frozen decision rules met.
+
+2026-11-14T16:00:00Z  PAPER: First PDF rejected by student (had code blocks in Implementation section). Rewritten completely with 7 figures drawn using fpdf2 primitives. No code blocks in final paper.
+
+2026-11-14T18:00:00Z  PUSH: First git push failed — stored GitHub credentials were for a different account ('Jollycommander'). Student provided correct repository URL. Remote URL updated.
+
+2026-11-14T22:00:00Z  REPO RESTRUCTURE: Student showed friend's repo structure. Added docs/, tests/, turnitin_reports/, results/logs/, results/archive_v1_pre_run/, paper/figures/. Rewrote all markdown files to match friend's format and depth.

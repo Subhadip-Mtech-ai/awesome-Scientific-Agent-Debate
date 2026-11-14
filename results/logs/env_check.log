@@ -1,0 +1,25 @@
+ENV CHECK — Hypothesis Ablation Study
+==================================================
+[1] Python version: 3.12.10
+[2] Package imports:
+    OK  numpy (2.4.4)
+    OK  pandas (2.2.2)
+    OK  scipy (1.13.0)
+    OK  scikit-learn (1.4.2)
+    OK  matplotlib (3.8.4)
+    OK  pyyaml (6.0.1)
+    OK  sentence-transformers (2.7.0)
+    OK  tqdm (4.66.4)
+    OK  requests (2.32.3)
+    OK  fpdf2 (2.7.9)
+[3] Required files:
+    OK  configs/experiment.yaml
+    OK  src/conditions.py
+    OK  src/evaluate.py
+    OK  src/utils.py
+    OK  evaluation_protocol.md
+[4] Environment variables:
+    OK  HF_TOKEN is set (len=37)
+==================================================
+ENV OK
+==================================================
