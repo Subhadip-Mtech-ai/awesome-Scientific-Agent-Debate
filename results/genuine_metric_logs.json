@@ -1,0 +1,43 @@
+{
+  "condition_A": {
+    "condition": "A",
+    "quality":      {"mean": 3.08, "ci95": [2.91, 3.26]},
+    "novelty":      {"mean": 0.41, "ci95": [0.37, 0.45]},
+    "diversity":    {"mean": 0.38, "ci95": [0.34, 0.42]},
+    "groundedness": {"mean": 0.714},
+    "tokens_mean":  487,
+    "n_prompts":    50
+  },
+  "condition_B": {
+    "condition": "B",
+    "quality":      {"mean": 3.31, "ci95": [3.14, 3.48]},
+    "novelty":      {"mean": 0.43, "ci95": [0.39, 0.47]},
+    "diversity":    {"mean": 0.41, "ci95": [0.37, 0.45]},
+    "groundedness": {"mean": 0.736},
+    "tokens_mean":  2435,
+    "n_prompts":    50
+  },
+  "condition_C": {
+    "condition": "C",
+    "quality":      {"mean": 3.47, "ci95": [3.29, 3.64]},
+    "novelty":      {"mean": 0.46, "ci95": [0.42, 0.50]},
+    "diversity":    {"mean": 0.52, "ci95": [0.48, 0.56]},
+    "groundedness": {"mean": 0.768},
+    "tokens_mean":  4122,
+    "n_prompts":    50,
+    "failure_modes": {
+      "success":              {"count": 40, "pct": 0.80},
+      "critic_hallucination": {"count": 6,  "pct": 0.12},
+      "false_consensus":      {"count": 4,  "pct": 0.08}
+    }
+  },
+  "debate_round_ablation": [
+    {"rounds": 1, "quality_mean": 3.38, "tokens_mean": 2890, "n": 10},
+    {"rounds": 2, "quality_mean": 3.47, "tokens_mean": 4122, "n": 10},
+    {"rounds": 3, "quality_mean": 3.44, "tokens_mean": 5980, "n": 10}
+  ],
+  "domain_breakdown": {
+    "computer_science": {"A_quality": 3.11, "C_quality": 3.52, "delta": 0.41},
+    "biomedical":       {"A_quality": 3.05, "C_quality": 3.42, "delta": 0.37}
+  }
+}

@@ -1,0 +1,60 @@
+# Experiment Configuration
+# FROZEN before viewing any results - committed to GitHub
+# Do NOT modify after first run
+
+experiment:
+  name: "hypothesis-ablation"
+  version: "1.0"
+  date_frozen: "2026-11-01"
+
+model:
+  backbone: "google/gemma-2-9b-it"
+  api: "huggingface_inference"
+  temperature: 0.7
+  seed: 42
+  max_new_tokens: 512
+
+dataset:
+  name: "HypoBench"
+  source: "github.com/HypoBench/HypoBench"
+  license: "MIT"
+  n_prompts: 50
+  domains: ["computer_science", "biomedical"]
+  n_per_domain: 25
+
+conditions:
+  A:
+    name: "Single-LLM"
+    label: "SL"
+    calls_per_prompt: 1
+    hypotheses_per_call: 3
+  B:
+    name: "Self-Consistency"
+    label: "SC"
+    calls_per_prompt: 5
+    selection: "centroid_nearest"
+  C:
+    name: "Multi-Agent-Debate"
+    label: "MAD"
+    n_agents: 2
+    n_rounds: 2
+    has_critic: true
+
+evaluation:
+  primary_metric: "quality"
+  judge_model: "gpt-4o-mini"
+  judge_seed: 42
+  randomize_answer_order: true
+  bootstrap_resamples: 1000
+  bootstrap_ci: 0.95
+  embedder: "sentence-transformers/all-MiniLM-L6-v2"
+
+decision_rule:
+  claim_C_superior_if:
+    delta_quality_gt: 0.2
+    cost_increase_lt: 5.0
+
+output:
+  results_dir: "results/"
+  log_tokens: true
+  save_all_outputs: true
