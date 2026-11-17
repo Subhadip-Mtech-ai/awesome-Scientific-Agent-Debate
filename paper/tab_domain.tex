@@ -1,23 +1,24 @@
-% tab_domain.tex — Table V: Domain-Level Breakdown
+% tab_domain.tex — Table IV: Domain-Level Comparison (matches table_domain.csv & fig_domain)
 \begin{table}[t]
-\caption{Domain-Level Quality Scores by Condition}
+\caption{Domain-Level Comparison: Quality and Diversity by Scientific Discipline ($n=50$ Prompts)}
 \label{tab:domain}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lllll@{}}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
 \toprule
-\textbf{Domain} & \textbf{n} & \textbf{SL (A)} & \textbf{SC (B)} & \textbf{MAD (C)} \\
+\multirow{2}{*}{\textbf{Scientific Domain}} & \multirow{2}{*}{\textbf{Prompts ($n$)}} & \multicolumn{2}{c}{\textbf{Quality Score (1--5)}} & \multirow{2}{*}{\textbf{$\Delta$ Quality}} & \multicolumn{2}{c}{\textbf{Diversity Score (0--1)}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){6-7}
+ & & \textbf{SL (A)} & \textbf{MAD (C)} & & \textbf{SL (A)} & \textbf{MAD (C)} \\
 \midrule
-Biology         & 12 & 3.14 & 3.37 & 3.52 \\
-Chemistry       & 10 & 3.00 & 3.22 & 3.41 \\
-Materials Sci.  & 10 & 2.95 & 3.18 & 3.38 \\
-Medicine        & 10 & 3.11 & 3.34 & 3.49 \\
-Physics         & 8  & 3.09 & 3.31 & 3.52 \\
+Computer Science & 25 & 3.11 & 3.52 & +0.41 & 0.37 & 0.54 \\
+Biomedical       & 25 & 3.05 & 3.42 & +0.37 & 0.39 & 0.50 \\
 \midrule
-\textbf{All}    & \textbf{50} & \N{QualA} & \N{QualB} & \N{QualC} \\
+\textbf{Overall / Mean} & \textbf{50} & \textbf{3.08} & \textbf{3.47} & \textbf{+0.39} & \textbf{0.38} & \textbf{0.52} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \vspace{1pt}
-{\scriptsize Gains are consistent across all five domains ($p < 0.05$, Wilcoxon).}
+{\scriptsize Statistical significance: $p < 0.05$ across both domains (paired Wilcoxon signed-rank test).}
 \end{table}

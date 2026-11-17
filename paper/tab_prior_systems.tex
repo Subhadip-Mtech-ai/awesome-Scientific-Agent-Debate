@@ -1,24 +1,26 @@
-% tab_prior_systems.tex — Table I: Comparison with Prior Systems
+% tab_prior_systems.tex — Table I: Prior Multi-Agent Scientific Hypothesis Systems
 \begin{table}[t]
 \caption{Summary of Prior Multi-Agent Scientific Hypothesis Systems}
 \label{tab:prior}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lllll@{}}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccll@{}}
 \toprule
-\textbf{System} & \textbf{Ref.} & \textbf{Agents} & \textbf{Benchmark} & \textbf{Metric} \\
+\textbf{System} & \textbf{Reference} & \textbf{Agents} & \textbf{Rounds} & \textbf{Benchmark / Domain} & \textbf{Primary Metric} \\
 \midrule
-MAD             & \cite{Du2024}         & 2--6   & MMLU, GSM8K   & Accuracy \\
-ChatEval        & \cite{Chan2023}       & 2--4   & MT-Bench      & Win rate \\
-MOOSE-Chem      & \cite{Yang2024}       & 3      & Chemistry     & Expert score \\
-SciAgents       & \cite{Ghafarollahi2024} & 4+   & Graph tasks   & Novelty \\
-VIRSCI          & \cite{Su2025}         & 5      & Biology       & Expert score \\
-Co-Scientist    & \cite{Gottsweis2026}  & 6      & Biomedicine   & Expert score \\
-Sparse MAD      & \cite{Li2024sparse}   & 3--8   & Reasoning     & Accuracy \\
-Multi-Persona   & \cite{Oh2026}         & 3--5   & Open-domain   & Expert score \\
+MAD             & Du et al.\ \cite{Du2024}           & 2--6 & 1--3 & MMLU, GSM8K            & Accuracy \\
+ChatEval        & Chan et al.\ \cite{Chan2023}       & 2--4 & 1--2 & MT-Bench               & Win Rate \\
+MOOSE-Chem      & Yang et al.\ \cite{Yang2024}       & 3    & 2    & Chemistry              & Expert Score \\
+SciAgents       & Ghafarollahi et al.\ \cite{Ghafarollahi2024} & 4+ & 2 & Materials Sci.    & Novelty \\
+VIRSCI          & Su et al.\ \cite{Su2025}           & 5    & 3    & Biology                & Expert Score \\
+Co-Scientist    & Gottsweis et al.\ \cite{Gottsweis2026} & 6 & 4+  & Biomedicine            & Expert Score \\
+Sparse MAD      & Li et al.\ \cite{Li2024sparse}     & 3--8 & 2--3 & Reasoning              & Accuracy \\
+Multi-Persona   & Oh et al.\ \cite{Oh2026}           & 3--5 & 2    & Open-domain            & Expert Score \\
 \midrule
-\textbf{Ours}   & --           & 1--3   & HypoBench     & Q, N, D, G \\
+\textbf{Ours}   & This paper                         & 1--3 & 1--3 & HypoBench (50 prompts) & Q, N, D, G \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}

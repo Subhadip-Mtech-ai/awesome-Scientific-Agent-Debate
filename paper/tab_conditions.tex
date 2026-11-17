@@ -1,22 +1,26 @@
 % tab_conditions.tex — Table II: Experimental Conditions
 \begin{table}[t]
-\caption{Experimental Conditions}
+\caption{Experimental Conditions: Architecture, Configuration, and Protocol}
 \label{tab:conditions}
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lllll@{}}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}clcccc@{}}
 \toprule
-\textbf{ID} & \textbf{Name} & \textbf{Model} & \textbf{Rounds} & \textbf{Agents} \\
+\textbf{ID} & \textbf{Condition Name} & \textbf{Backbone Model} & \textbf{Agents} & \textbf{Rounds} & \textbf{Role} \\
 \midrule
-A  & Single-LLM (SL)        & GPT-4o-mini & 1 & 1 \\
-B  & Self-Consistency (SC)  & GPT-4o-mini & 1 & 1$\times$5 \\
-C  & Multi-Agent Debate (MAD) & GPT-4o-mini & 1--3 & 3 \\
+A  & Single-LLM (SL)          & GPT-4o-mini & 1       & 1   & Primary (Baseline) \\
+B  & Self-Consistency (SC)    & GPT-4o-mini & 1 (×5) & 1   & Primary (Secondary) \\
+C  & Multi-Agent Debate (MAD) & GPT-4o-mini & 3       & 1--3 & Primary (Reported) \\
 \midrule
-\multicolumn{5}{@{}l}{\textit{Ablation sub-conditions (Condition C only):}} \\
-C1 & MAD-R1 & GPT-4o-mini & 1 & 3 \\
-C2 & MAD-R2 & GPT-4o-mini & 2 & 3 \\
-C3 & MAD-R3 & GPT-4o-mini & 3 & 3 \\
+\multicolumn{6}{@{}l}{\textit{Ablation sub-conditions (Condition C only, $n=10$ exploratory):}} \\
+C1 & MAD — Round 1 & GPT-4o-mini & 3 & 1 & Ablation \\
+C2 & MAD — Round 2 & GPT-4o-mini & 3 & 2 & Ablation (Optimal) \\
+C3 & MAD — Round 3 & GPT-4o-mini & 3 & 3 & Ablation \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
+\vspace{1pt}
+{\scriptsize Temperature = 0.7; \texttt{max\_tokens} = 512; seed = 42 for all conditions. MAD agents: Proposer, Critic, Arbitrator.}
 \end{table}

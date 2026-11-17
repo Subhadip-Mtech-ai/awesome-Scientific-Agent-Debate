@@ -1,22 +1,21 @@
 % tab_ai_log.tex — Table VII: AI Assistance Summary
 \begin{table}[t]
-\caption{Human--AI Collaboration Log Summary (Section A--F)}
+\caption{Human--AI Collaboration Log: Gate Summary (Sections A--F)}
 \label{tab:ailog}
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}llll@{}}
+\begin{tabular}{@{}cllll@{}}
 \toprule
-\textbf{Gate} & \textbf{Phase} & \textbf{AI Role} & \textbf{Human Override} \\
+\textbf{Gate} & \textbf{Research Phase} & \textbf{AI Tool / Role} & \textbf{Human Action} & \textbf{Log Section} \\
 \midrule
-G1 & Hypothesis generation & Lit.\ search assist  & Hypotheses set by human \\
-G2 & Baseline validation   & Sanity check prompts & Human verified results \\
-G3 & Analysis design       & Metric suggestion    & Human chose metrics \\
-G4 & Write-up              & Draft + LaTeX        & Human edited all text \\
+G1 & Hypothesis generation  & Literature search assist   & Hypotheses set by human researcher & Sec.\ A \\
+G2 & Baseline validation    & Sanity-check prompt design & Human verified all pipeline outputs & Sec.\ B \\
+G3 & Analysis design        & Metric suggestion (rubric) & Human selected and approved metrics & Sec.\ C \\
+G4 & Write-up \& LaTeX      & Draft generation + formatting & Human edited and approved all text & Sec.\ D--F \\
 \midrule
-\multicolumn{4}{@{}l}{\textit{All AI outputs logged in \texttt{ai\_assistance\_log.md}}} \\
-\multicolumn{4}{@{}l}{\textit{No AI output used verbatim in final paper text.}} \\
+\multicolumn{5}{@{}l}{\textit{Full interaction log: \texttt{ai\_assistance\_log.md}. No AI output used verbatim in final paper.}} \\
 \bottomrule
 \end{tabular}%
 }

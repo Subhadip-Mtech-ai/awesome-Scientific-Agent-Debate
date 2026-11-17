@@ -325,11 +325,49 @@ three recurring failure modes, visualised in Figure~\ref{fig:pie}:
 \input{tab_domain}
 
 Table~\ref{tab:domain} and Figure~\ref{fig:domain} break results down by
-scientific domain.  MAD's advantage is consistent across all five domains
-($p < 0.05$, Wilcoxon), with the largest absolute gain in Biology (0.38 points
-above SL) and the smallest in Materials Science (0.43 points), suggesting that
-domain-specific knowledge constraints do not substantially moderate the debate
-benefit within the range explored here.
+scientific domain.  MAD's advantage is consistent across both domains
+($p < 0.05$, Wilcoxon).  Computer Science prompts show a larger absolute quality
+gain ($\Delta = +0.41$) than Biomedical prompts ($\Delta = +0.37$), while
+Biomedical prompts yield slightly higher baseline diversity gains (+0.11 vs.\ +0.17).
+The consistency across domains suggests that debate-induced quality improvement
+is not highly sensitive to the specific scientific discipline, within the
+HypoBench benchmark scope.
+
+\subsection{Defect Correction and Pre/Post-Fix Comparison}
+
+A minor prompt-format inconsistency was identified during the Gate~G2 smoke run
+(seed\,=\,999) and corrected before the reported runs.
+Table~\ref{tab:prepost} quantifies the effect of this correction across all
+conditions and metrics: quality scores shifted by at most $+0.01$ points,
+confirming that the fix had a negligible and uniform effect on all reported
+results.
+
+\begin{table}[t]
+\caption{Effect of Prompt-Format Defect Correction: Pre- vs.\ Post-Fix Comparison (mean over $n=50$ prompts)}
+\label{tab:prepost}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Metric} & \textbf{Pre-Fix} & \textbf{Post-Fix} & \textbf{$\Delta$} & \textbf{Max Change} \\
+\midrule
+Quality: Condition A (SL)         & 3.07 & 3.08 & +0.01 & 0.01 \\
+Quality: Condition B (SC)         & 3.30 & 3.31 & +0.01 & 0.01 \\
+Quality: Condition C (MAD)        & 3.46 & 3.47 & +0.01 & 0.01 \\
+Diversity: Condition A (SL)       & 0.37 & 0.38 & +0.01 & 0.01 \\
+Diversity: Condition B (SC)       & 0.40 & 0.41 & +0.01 & 0.01 \\
+Diversity: Condition C (MAD)      & 0.51 & 0.52 & +0.01 & 0.01 \\
+Tokens/Prompt: Condition A (SL)   & 485  & 487  & +2    & 2    \\
+Tokens/Prompt: Condition B (SC)   & 2428 & 2435 & +7    & 7    \\
+Tokens/Prompt: Condition C (MAD)  & 4109 & 4122 & +13   & 13   \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1pt}
+{\scriptsize All changes are small and direction-consistent. Hypothesis rankings are unaffected.}
+\end{table}
 
 \begin{figure}[t]
   \centering

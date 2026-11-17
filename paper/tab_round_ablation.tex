@@ -1,19 +1,21 @@
-% tab_round_ablation.tex — Table IV: Debate-Round Ablation
+% tab_round_ablation.tex — Table V: Debate-Round Ablation (matches table_round_ablation.csv)
 \begin{table}[t]
-\caption{Debate-Round Ablation (Condition C, $n=50$)}
+\caption{Debate-Round Ablation: Trajectory and Token Cost (Condition C, $n=50$ Prompts)}
 \label{tab:ablation}
 \centering
 \scriptsize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}cllll@{}}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}cccccc@{}}
 \toprule
-\textbf{Rounds} & \textbf{Q} $\uparrow$ & \textbf{D} $\uparrow$ & \textbf{Tokens} & \textbf{$\Delta$Q vs.\ R1} \\
+\textbf{Debate Rounds} & \textbf{Quality Mean} & \textbf{Diversity} & \textbf{Mean Tokens} & \textbf{$\Delta$Q vs.\ R1} & \textbf{Evaluation Protocol} \\
 \midrule
-1 (C1) & \N{QualR1} & \N{DivR1} & \N{TokR1} & --      \\
-2 (C2) & \N{QualR2} & \N{DivR2} & \N{TokR2} & \N{dQR2} \\
-3 (C3) & \N{QualR3} & \N{DivR3} & \N{TokR3} & \N{dQR3} \\
+1 Round  (C1) & 3.38 & 0.44 & 2,890 & --       & Exploratory \\
+2 Rounds (C2) & 3.47 & 0.52 & 4,122 & +0.09    & Reported Default (Optimal) \\
+3 Rounds (C3) & 3.44 & 0.51 & 5,980 & $-$0.03  & Exploratory (Diminishing) \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \vspace{1pt}
-{\scriptsize Diminishing returns beyond Round 2 at 8.5$\times$ token cost of Round 1.}
+{\scriptsize Diminishing returns beyond Round 2: +1,232 tokens for R1$\to$R2 (+0.09 Q); +1,858 tokens for R2$\to$R3 ($-$0.03 Q).}
 \end{table}

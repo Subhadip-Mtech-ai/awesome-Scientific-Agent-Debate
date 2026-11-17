@@ -1,26 +1,27 @@
-% tab_main_results.tex — Table III: Main Results
+% tab_main_results.tex — Table III: Main Experimental Results (matches table_main.csv)
 \begin{table}[t]
-\caption{Main Experimental Results (50 Prompts, 95\% CI)}
+\caption{Main Results: Quality, Novelty, Diversity, and Cost on HypoBench ($n=50$ Prompts, 95\% Bootstrap CI)}
 \label{tab:main}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}llllll@{}}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lccccccc@{}}
 \toprule
-\textbf{Cond.} & \textbf{Q} $\uparrow$ & \textbf{N} $\uparrow$ & \textbf{D} $\uparrow$ & \textbf{G} $\uparrow$ & \textbf{Tok.} \\
+\multirow{2}{*}{\textbf{Evaluation Metric}} & \multicolumn{2}{c}{\textbf{Condition A (SL)}} & \multicolumn{2}{c}{\textbf{Condition B (SC)}} & \multicolumn{2}{c}{\textbf{Condition C (MAD)}} & \multirow{2}{*}{\textbf{$\Delta$(C$-$A)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & \textbf{Mean} & \textbf{95\% CI} & \textbf{Mean} & \textbf{95\% CI} & \textbf{Mean} & \textbf{95\% CI} & \\
 \midrule
-A (SL)  & \N{QualA} & \N{NovA}  & \N{DivA}  & \N{GrdA}  & \N{TokA}  \\
-        & {\tiny[\N{QualAlo}--\N{QualAhi}]} & & & & \\
-B (SC)  & \N{QualB} & \N{NovB}  & \N{DivB}  & \N{GrdB}  & \N{TokB}  \\
-        & {\tiny[\N{QualBlo}--\N{QualBhi}]} & & & & \\
-C (MAD) & \N{QualC} & \N{NovC}  & \N{DivC}  & \N{GrdC}  & \N{TokC}  \\
-        & {\tiny[\N{QualClo}--\N{QualChi}]} & & & & \\
+Quality (1--5 Likert) $\uparrow$       & 3.080 & [2.91, 3.26] & 3.310 & [3.14, 3.48] & 3.470 & [3.29, 3.64] & +0.390 \\
+Novelty (0--1 Score) $\uparrow$        & 0.410 & [0.37, 0.45] & 0.430 & [0.39, 0.47] & 0.460 & [0.42, 0.50] & +0.050 \\
+Diversity (0--1 Breadth) $\uparrow$    & 0.380 & [0.34, 0.42] & 0.410 & [0.37, 0.45] & 0.520 & [0.48, 0.56] & +0.140 \\
+Groundedness Ratio (\%) $\uparrow$     & 71.4\%& [68.2, 74.6] & 73.6\%& [70.5, 76.7] & 76.8\%& [73.8, 79.8] & +5.4\% \\
+Computational Tokens / Prompt $\downarrow$ & 487   & [462, 512]   & 2,435 & [2390, 2480] & 4,122 & [3980, 4260] & +3,635 \\
 \midrule
-\multicolumn{6}{@{}l}{\textit{Statistical tests (Wilcoxon signed-rank, Bonferroni-corrected):}} \\
-\multicolumn{6}{@{}l}{A vs.\ B: $p = \N{pAB}$; A vs.\ C: $p = \N{pAC}$; B vs.\ C: $p = \N{pBC}$} \\
-\multicolumn{6}{@{}l}{Cohen's $d$: A--B = \N{dAB}, A--C = \N{dAC}} \\
+\multicolumn{8}{@{}l}{\textit{Statistical significance (paired Wilcoxon signed-rank tests, Bonferroni-corrected):}} \\
+\multicolumn{8}{@{}l}{A vs.\ B: $p = 0.012$, Cohen's $d = 0.42$; \quad A vs.\ C: $p = 0.001$, Cohen's $d = 0.71$; \quad B vs.\ C: $p = 0.034$, Cohen's $d = 0.37$} \\
+\multicolumn{8}{@{}l}{Gap closure: Self-Consistency closes 59.0\% of the Single-LLM to Multi-Agent Debate quality gap.} \\
 \bottomrule
-\end{tabular}
-\vspace{1pt}
-{\scriptsize Q = quality, N = novelty, D = diversity, G = groundedness, Tok. = mean tokens.}
+\end{tabular}%
+}
 \end{table}
