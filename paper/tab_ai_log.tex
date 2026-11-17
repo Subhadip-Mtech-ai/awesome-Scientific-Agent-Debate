@@ -5,6 +5,7 @@
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}llll@{}}
 \toprule
 \textbf{Gate} & \textbf{Phase} & \textbf{AI Role} & \textbf{Human Override} \\
@@ -17,5 +18,6 @@ G4 & Write-up              & Draft + LaTeX        & Human edited all text \\
 \multicolumn{4}{@{}l}{\textit{All AI outputs logged in \texttt{ai\_assistance\_log.md}}} \\
 \multicolumn{4}{@{}l}{\textit{No AI output used verbatim in final paper text.}} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}

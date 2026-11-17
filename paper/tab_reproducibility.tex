@@ -4,7 +4,8 @@
 \label{tab:repro}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{3pt}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Item} & \textbf{Status} & \textbf{Location} \\
@@ -22,5 +23,6 @@ Smoke run log committed            & \checkmark & \texttt{results/logs/smoke\_ru
 Env check log committed            & \checkmark & \texttt{results/logs/env\_check.log} \\
 Pre/post-fix comparison archived   & \checkmark & \texttt{results/pre\_post\_fix\_comparison.csv} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
